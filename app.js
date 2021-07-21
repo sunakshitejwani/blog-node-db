@@ -19,7 +19,15 @@ app.get("/",function(req,res){
   res.render("home",{content:homeStartingContent});
 })
 
+app.get("/about",function(req,res){
+  res.render("about",{content:aboutContent});
+})
 
-app.listen(3001, function(req,res){
-  console.log("server is running on port 3001");
+app.get("/contact",function(req,res){
+  res.render("contact",{content:contactContent});
+})
+
+
+app.listen(3000, function(req,res){
+  console.log("server is running on port 3000");
 });
