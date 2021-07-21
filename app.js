@@ -27,6 +27,10 @@ app.get("/contact",function(req,res){
   res.render("contact",{content:contactContent});
 })
 
+app.get("/compose",function(req,res){
+  res.render("compose");
+})
+
 
 app.listen(3000, function(req,res){
   console.log("server is running on port 3000");
