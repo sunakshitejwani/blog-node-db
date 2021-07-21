@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/",function(req,res){
-  let helloMessage = "Home";
-  res.render("home",{message:helloMessage});
+  res.render("home",{content:homeStartingContent});
 })
+
 
 app.listen(3001, function(req,res){
   console.log("server is running on port 3001");
