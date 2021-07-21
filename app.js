@@ -15,19 +15,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+app.get("/",function(req,res){
+  let helloMessage = "Home";
+  res.render("home",{message:helloMessage});
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(3001, function(req,res){
+  console.log("server is running on port 3001");
 });
