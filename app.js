@@ -34,16 +34,12 @@ const Post = mongoose.model("Post", postSchema);
 
 app.get("/", function(req, res) {
   //res.render("home", { content: homeStartingContent, homePosts: posts });
-  Post.find({}, function(err, posts){
-
+  Post.find({}, function(err, posts) {
     res.render("home", {
-  
       content: homeStartingContent,
-  
+
       homePosts: posts
-  
-      });
-  
+    });
   });
 });
 
@@ -83,16 +79,17 @@ app.post("/compose", function(req, res) {
     content: req.body.postBody
   };
   posts.push(post);
-  const newPost = new Post ({
-
+  const newPost = new Post({
     title: req.body.postTitle,
- 
+
     content: req.body.postBody
- 
   });
   console.log(newPost);
-  newPost.save();
-  res.redirect("/");
+  newPost.save(function(err) {
+    if (!err) {
+      res.redirect("/");
+    }
+  });
 });
 
 app.listen(3000, function(req, res) {
