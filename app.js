@@ -40,7 +40,7 @@ app.get("/posts/:pageTitle",function(req,res){
     let storedTitle = _.kebabCase(element.title);
     if(requestedTitle === storedTitle){
       console.log("Match found");
-      res.render("post",{content:element.content, title: element.title});
+      res.render("post",{content:element.content, title: element.title, titleSearched : requestedTitle});
     } else {
       console.log("Not a match")
     }
