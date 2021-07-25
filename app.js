@@ -55,22 +55,17 @@ app.get("/compose", function(req, res) {
   res.render("compose");
 });
 
-app.get("/posts/:pageTitle", function(req, res) {
-  console.log(req.params.pageTitle);
-  let requestedTitle = _.kebabCase(req.params.pageTitle);
-  posts.forEach(function(element) {
-    let storedTitle = _.kebabCase(element.title);
-    if (requestedTitle === storedTitle) {
-      console.log("Match found");
-      res.render("post", {
-        content: element.content,
-        title: element.title,
-        titleSearched: requestedTitle
-      });
-    } else {
-      console.log("Not a match");
-    }
+app.get("/posts/:postId", function(req, res) {
+  console.log(req.params.postId);
+  const requestedPostId = req.params.postId;
+
+  Post.findOne({_id:requestedPostId},function(err,post){
+    res.render("post",{
+      title:post.title,
+      content:post.content
+    });
   });
+  
 });
 
 app.post("/compose", function(req, res) {
